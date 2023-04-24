@@ -8,7 +8,7 @@ import {networkInterfaces} from 'os'
 const nets:any = networkInterfaces()
 const results:any = Object.create(null)
 
-export const localhost = process.env.LOCALHOST
+export const localhost = process.env.LOCALHOST?.replace(/\s/g, '')
 
 async function main(){
   try{

@@ -5,6 +5,6 @@ SET "APIPORT=3001"
 docker pull node:18.12.0-alpine
 docker pull mysql
 docker build -t gera-estoque -f .\src\Dockerfile .
-docker-compose up
+docker-compose up -d
 timeout 10
-start "" "INICIOUsuario.bat"
+start ProducaoAPP -d

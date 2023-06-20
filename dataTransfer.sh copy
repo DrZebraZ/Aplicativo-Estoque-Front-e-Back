@@ -1,0 +1,8 @@
+#!/bin/bash
+echo "SETING VARIABLES"
+CONTAINER_NAME=banco-dados # Replace with your container name
+MYSQL_USER=root  # Replace with your MySQL user
+MYSQL_PASSWORD=password  # Replace with your MySQL password
+SQL_FILE="./Database/setup.sql"
+echo "executing"
+docker exec -i $CONTAINER_NAME mysql -u $MYSQL_USER -p$MYSQL_PASSWORD < $SQL_FILE

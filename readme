@@ -1,0 +1,20 @@
+Requisitos:
+Docker
+Docker Composer
+
+Instalação:
+Configurar os env
+
+docker pull mysql
+docker build -t dz-gera-estoque -f ./api/src/Dockerfile .
+docker build -t dz-front-end -f ./app/Dockerfile .
+docker-compose up
+docker exec -i $CONTAINER_NAME mysql -u $MYSQL_USER -p$MYSQL_PASSWORD < ./Database/setup.sql
+
+MacOS: 
+bash getIp.sh
+bash setup.sh
+
+
+
+

@@ -1,0 +1,40 @@
+#table-scroll {
+  max-height: 500px;
+  height:50%;
+  width: 100%;
+  font-size:16px;
+  overflow:auto;
+  padding:0px;
+  background-color: #EEEEEE;  
+  color:black;
+}
+#table-wrapper table * {
+  background:white;
+  color:black;
+}
+#table-wrapper .text {
+  position:absolute;   
+  font-size: 16px;
+  top:-20px;
+  z-index:2;
+  height:20px;
+  width:35%;
+  border:1px solid black;
+}
+
+th{
+  padding:0px;
+  margin:0px;
+  text-align: left;
+}
+
+li:nth-child(even) {
+  background:#FFFFFF;
+}
+
+.active {
+  /* Estilos aplicados ao botão quando estiver ativo */
+  /* Por exemplo: */
+  background-color: white;
+  color: black;
+}

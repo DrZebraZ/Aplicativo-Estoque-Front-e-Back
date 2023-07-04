@@ -5,7 +5,7 @@
   "main": "main.ts",
   "scripts": {
     "start": "node main.ts",
-    "dev": "PORT=3001 tsx watch main.ts"
+    "dev": "tsx watch main.ts"
   },
   "keywords": [],
   "author": "DrZebra",

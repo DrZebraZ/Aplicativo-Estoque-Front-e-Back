@@ -6,6 +6,7 @@ import { getDateTimeString } from "../entity/date-time";
 async function produtos(server:any){
   server.post('/add',{schema:{body:$ref('AddProdutoSchema')}},addProduto);
   server.get('/getListaProdutos',listaProdutos);
+  server.get('/getListaProdutosNegativo',listaProdutosNegativo);
   server.get('/getListaProdutosProduzidos',listaProdutosProduzidos);
   server.put('/editaProduto',{schema:{body:$ref('EditaProdutoSchema')}},editaProduto);
   server.delete('/deletaProduto/:id',deletaProduto);
@@ -34,6 +35,20 @@ async function listaProdutos(request:FastifyRequest, reply:FastifyReply){
   try{
     const CONN = await databaseConnector.getConnection()
     const result = await CONN.query(`select id, referencia, descricao, estoque from produto where deleted_at is null order by referencia asc`)
+    reply.code(200)
+    reply.send(result[0])
+  }catch(e){
+    databaseConnector.closeConn()
+    console.log(e)
+    reply.code(404)
+    reply.send(`Erro inesperado: ${e}`)
+  }
+}
+
+async function listaProdutosNegativo(request: FastifyRequest, reply: FastifyReply){
+  try{
+    const CONN = await databaseConnector.getConnection()
+    const result = await CONN.query(`select id, referencia, descricao, estoque from produto where deleted_at is null and estoque < 0 order by referencia asc`)
     reply.code(200)
     reply.send(result[0])
   }catch(e){

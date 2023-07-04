@@ -11,14 +11,14 @@ function Producao() {
   const [quantia, setQuantia] = useState(0)
   const [id, setId] = useState('')
   const [dados, setDados] = useState('')
-  const [isLoading, setLoading] = useState(true)
+  const [isLoading, setLoading] = useState()
   const [alerta, setAlerta] = useState()
   const [layoutCRUD, setLayoutCRUD] = useState(<AddProducao/>)
   const [paginaCRUD, setPaginaCRUD] = useState('ADICIONAR')
 
   async function buscaTabela(setDados){
     try{
-      const response = await producaoService.listaProducao()
+      const response = await producaoService.listaProducao(alteraAlerta)
       setDados(response.data)
     }catch(e){
       console.log(e)
@@ -93,7 +93,7 @@ function Producao() {
       setLoading(false)
     }
   },[dados])
-  if (isLoading){
+  if (isLoading || !dados){
     return(
       <>
       <Janela>
@@ -114,7 +114,7 @@ function Producao() {
             </div>
             <div style={{marginTop:"0%", padding:"0%"}}>{layoutCRUD}</div>
           </div>
-          <div className='col m-1' id='titulos'>
+          <div className='col m-1'>
             <div className="row justify-content-between" style={{backgroundColor:"black", padding:"0px 10px"}}>
               <p className="col-6" style={{padding:"0px", margin:"0px"}}>Referência</p>
               <p className="col-2" style={{padding:"0px", margin:"0px"}}>Quantia</p>

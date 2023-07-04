@@ -29,8 +29,13 @@ function Estoque(props) {
   }  
 
   const handleRemover = async () => {
-    let novoEstoque = Number(estoque) - Number(addRemEstoque)
-    editProduto(novoEstoque)
+    if (addRemEstoque < 0){
+      let novoEstoque = Number(estoque) + Number(addRemEstoque)
+      editProduto(novoEstoque)
+    }else{
+      let novoEstoque = Number(estoque) - Number(addRemEstoque)
+      editProduto(novoEstoque)
+    }
     // Aqui você pode adicionar a lógica para enviar os dados para o backend, por exemplo.
   }  
   

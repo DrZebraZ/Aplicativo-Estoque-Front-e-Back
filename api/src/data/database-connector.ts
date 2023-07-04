@@ -7,18 +7,23 @@ class DatabaseConnector {
 	connection: mysql.Connection | any = ''
 
 	async configurePool() {
-		let connectionLimit: number = +(process.env.DATABASE_CONNECTION_LIMIT || 2)
-		const config:any = {
-			host: localhost,
-			port: process.env.DATABASE_PORT,
-			user: process.env.DATABASE_USER,
-			password: process.env.DATABASE_PASSWORD,
-			database: process.env.DATABASE_NAME,
-			connectionLimit: connectionLimit
-		};
+		try{
+			let connectionLimit: number = +(process.env.DATABASE_CONNECTION_LIMIT || 2)
+			const config:any = {
+				host: localhost,
+				port: process.env.DATABASE_PORT,
+				user: process.env.DATABASE_USER,
+				password: process.env.DATABASE_PASSWORD,
+				database: process.env.DATABASE_NAME,
+				connectionLimit: connectionLimit
+			};
 
-		const pool = mysql.createPool(config);
-		this.pool = pool
+			const pool = mysql.createPool(config);
+			this.pool = pool
+		}catch(e){
+			console.log(e)
+		}
+		
 	}
 	
 	async getConnection():Promise<mysql.PoolConnection>{

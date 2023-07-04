@@ -53,6 +53,7 @@ async function listaProduzido(request:FastifyRequest|any, reply:FastifyReply){
 
 async function listaProduzidoJunto(request:FastifyRequest|any, reply:FastifyReply){
   let addToQueryCostureiro = ''
+  let addToQueryProduto = ''
   if(request.query.costureiro_id > 0){
     addToQueryCostureiro = `and c.id = ${request.query.costureiro_id}`
   }

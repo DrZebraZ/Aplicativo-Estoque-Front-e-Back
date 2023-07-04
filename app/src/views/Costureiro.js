@@ -13,9 +13,10 @@ function Costureiro() {
   const [layoutCRUD, setLayoutCRUD] = useState(<CostureiroComp/>)
   const [tamanhoFonte, setTamanhoFonte] = useState(10)
 
-  async function buscaTabela(setDados){
+  async function buscaCostureiros(setDados){
     try{
-      const response = await costureiroService.getListaCostureiros()
+      console.log('buscaCostureiros')
+      const response = await costureiroService.getListaCostureiros(alteraAlerta)
       setDados(response.data)
     }catch(e){
       console.log(e)
@@ -60,7 +61,7 @@ function Costureiro() {
   }
 
   useEffect(() => {
-    buscaTabela(setDados)
+    buscaCostureiros(setDados)
   },[isLoading])
 
   useEffect(()=>{
@@ -75,7 +76,6 @@ function Costureiro() {
   useEffect(()=>{
     if (!dados){
       setLoading(true)
-      buscaTabela(setDados)
     }else{
       setLoading(false)
     }
@@ -89,37 +89,38 @@ function Costureiro() {
       </>
     )
   }
-  return (
-    <>
-      <Janela>
-        {alert(alerta)}
-        <div className='row' style={{fontSize:'20px'}}>
-          <div className='col-6 col-md-4 m-1' style={{margin:"0px",  padding:"0px", border:"2px solid black"}}>
+  return ( 
+    <Janela>
+      {alert(alerta)}
+      <div className='row' style={{ fontSize:'20px'}}>
+        <div className='col-6 col-md-4 m-1' style={{padding:"0px", margin:"0px"}}>
+          <div style={{margin:"0px", width:"100%",  padding:"0px", border:"2px solid black"}}>
             {layoutCRUD}
           </div>
-          <div className='col m-1' id='titulos'>
-            <div className="row justify-content-between" style={{backgroundColor:"black", padding:"0px 10px"}}>
-              <p className="col-6" style={{padding:"0px", margin:"0px"}}>ID</p>
-              <p className="col-6" style={{padding:"0px", margin:"0px"}}>NOME</p>
-            </div>
-            <div id="table-wrapper" className='row' style={{fontSize:`${tamanhoFonte}px`}}>
-              <div id="table-scroll" style={{border:"2px solid black"}}>
-                <ul className='row justify-content-center' style={{padding:"0px", margin:'0px'}}>
-                  {dados.map((val)=>{
-                    return(
-                      <li key={val.id} bgcolor="#EEEEEE" className='row justify-content-between' onClick={()=>changeDados(val)}>
-                        <p className='col-6' style={{margin:'0px', padding:'1px 0px'}}>{val.id}</p>
-                        <p className='col-6' style={{margin:'0px', padding:'1px 0px'}}>{val.nome}</p>
-                      </li>
-                    )
-                  })}
-                </ul>
-              </div>
+        </div>
+        
+        <div className='col m-1'>
+          <div className="row justify-content-between" style={{backgroundColor:"black", padding:"0px 10px"}}>
+            <p className="col-4" style={{padding:"0px", margin:"0px"}}>ID</p>
+            <p className="col-8" style={{padding:"0px", margin:"0px"}}>NOME</p>
+          </div>
+          <div id="table-wrapper" className='row'>
+            <div id="table-scroll" style={{border:"2px solid black"}}>
+              <ul className='row justify-content-center' style={{padding:"0px", margin:'0px'}}>
+                {dados.map((val)=>{
+                  return(
+                    <li key={val.id} bgcolor="#EEEEEE" className='row justify-content-between' onClick={()=>changeDados(val)}>
+                      <p className='col-4' style={{margin:'0px', padding:'1px 0px'}}>{val.id}</p>
+                      <p className='col-8' style={{margin:'0px', padding:'1px 0px'}}>{val.nome}</p>
+                    </li>
+                  )
+                })}
+              </ul>
             </div>
           </div>
         </div>
-      </Janela>
-    </>
+      </div>
+    </Janela>
   )
 }
 export default Costureiro

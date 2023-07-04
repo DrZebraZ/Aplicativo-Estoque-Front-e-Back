@@ -33,7 +33,7 @@ function CostureiroComp(props) {
 
   return (
     <>
-      <div style={{marginRight:"0px", padding:"0px"}}>
+      <div style={{padding:"0px"}}>
         <form  onSubmit={handleFormADD}>
           <div className='row m-2'>
             <label style={{fontSize:'20px', padding:'0', color:"#563554"}} htmlFor="descricao">Nome:</label>

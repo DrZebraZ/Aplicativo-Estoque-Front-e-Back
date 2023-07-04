@@ -9,6 +9,8 @@ docker pull mysql
 docker build -t dz-gera-estoque -f ./api/src/Dockerfile .
 docker build -t dz-front-end -f ./app/Dockerfile .
 docker-compose up
+
+apos mysql subir
 docker exec -i $CONTAINER_NAME mysql -u $MYSQL_USER -p$MYSQL_PASSWORD < ./Database/setup.sql
 
 MacOS: 

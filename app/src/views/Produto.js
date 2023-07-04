@@ -19,7 +19,7 @@ function Produto() {
 
   async function buscaTabela(setDados){
     try{
-      const response = await serviceProduto.getListaProdutos()
+      const response = await serviceProduto.getListaProdutos(alteraAlerta)
       setDados(response.data)
     }catch(e){
       console.log(e)
@@ -49,7 +49,7 @@ function Produto() {
     setAlerta(tipo)
   }
 
-  function alert(tipo, message){
+  function alert(tipo){
     const delay = 8000
     const handleAction =() =>{
       alteraAlerta('')
@@ -60,7 +60,6 @@ function Produto() {
         <>
           <div style={{position:"absolute", backgroundColor:"red", fontSize:"20px", maxWidth:"400px", right:"10px", top:"10px"}} onClick={()=>setAlerta('')}>
             <>{tipo}</>
-            <p className="mb-0">{message}</p>
           </div>
         </>
       )
@@ -122,23 +121,26 @@ function Produto() {
     )
   }
   return (
-    <>
       <Janela>
         {alert(alerta)}
-        <div className='row' style={{fontSize:'20px'}}>
+        <div className='row d-flex align-items-start' style={{fontSize:'20px'}}>
           <div className='col-6 col-md-4 m-1' style={{border:"2px solid black"}}>
-            <div className='row' style={{borderBottom:"2px solid black"}}>
-              <div className={`col ${paginaCRUD === 'ADICIONAR' ? 'active' : ''}`} style={{textAlign:'center'}} onClick={()=>setPaginaCRUD('ADICIONAR')}>ADICIONAR</div>
-              <div className={`col ${paginaCRUD === 'EDITAR' ? 'active' : ''}`} style={{textAlign:'center'}} onClick={()=>setPaginaCRUD('EDITAR')}>EDITAR</div>
-              <div className={`col ${paginaCRUD === 'DELETAR' ? 'active' : ''}`} style={{textAlign:'center'}} onClick={()=>setPaginaCRUD('DELETAR')}>DELETAR</div>
+            <div>
+              <div className='row' style={{borderBottom:"2px solid black"}}>
+                <div className={`col ${paginaCRUD === 'ADICIONAR' ? 'active' : ''}`} style={{textAlign:'center'}} onClick={()=>setPaginaCRUD('ADICIONAR')}>ADICIONAR</div>
+                <div className={`col ${paginaCRUD === 'EDITAR' ? 'active' : ''}`} style={{textAlign:'center'}} onClick={()=>setPaginaCRUD('EDITAR')}>EDITAR</div>
+                <div className={`col ${paginaCRUD === 'DELETAR' ? 'active' : ''}`} style={{textAlign:'center'}} onClick={()=>setPaginaCRUD('DELETAR')}>DELETAR</div>
+              </div>
+              <div style={{marginTop:"0%", padding:"0%"}}>
+                {layoutCRUD}
+              </div>
             </div>
-            <div style={{marginTop:"0%", padding:"0%"}}>{layoutCRUD}</div>
           </div>
           <div className='col m-1'>
             <div className="row justify-content-between" style={{backgroundColor:"black", padding:"0px 10px"}}>
-              <p className="col-2" style={{padding:"0px", margin:"0px"}}>Referência</p>
-              <p className="col-4" style={{padding:"0px", margin:"0px"}}>Descrição</p>
-              <p className="col-2" style={{padding:"0px", margin:"0px"}}>Estoque</p>
+              <p className="col-4" style={{padding:"0px", margin:"0px"}}>Referência</p>
+              <p className="col-7" style={{padding:"0px", margin:"0px"}}>Descrição</p>
+              <p className="col-1" style={{padding:"0px", margin:"0px"}}>Estoque</p>
             </div>
             <div id="table-wrapper" className='row' style={{fontSize:'16px'}}>
               <div id="table-scroll" style={{border:"2px solid black"}}>
@@ -157,9 +159,7 @@ function Produto() {
             </div>
           </div>
         </div>
-        
       </Janela>
-    </>
   )
 
 }

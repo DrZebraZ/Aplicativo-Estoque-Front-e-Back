@@ -1,6 +1,14 @@
 #table-scroll {
-  max-height: 500px;
-  height:50%;
+  max-height: 600px;
+  width: 100%;
+  font-size:16px;
+  padding:0px;
+  overflow:auto;
+  background-color: #EEEEEE;  
+  color:black;
+}
+#table-scroll-dados {
+  max-height: 300px;
   width: 100%;
   font-size:16px;
   overflow:auto;

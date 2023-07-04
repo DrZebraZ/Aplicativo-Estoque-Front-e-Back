@@ -38,6 +38,7 @@ function NavBar() {
               <NavbarItem className="nav-link" href="/produto" label="Produto" style={alteraEstilo({ nome: "/produto" })} />
               <NavbarItem className="nav-link" href="/costureiro" label="Costureiros" style={alteraEstilo({ nome: "/costureiro" })} />
               <NavbarItem className="nav-link" href="/producao" label="Produção" style={alteraEstilo({ nome: "/producao" })} />
+              <NavbarItem className="nav-link" href="/dados" label="Dados" style={alteraEstilo({ nome: "/dados" })} />
             </Nav>
           </Navbar.Collapse>
         </Container>

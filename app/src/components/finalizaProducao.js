@@ -84,10 +84,10 @@ function FinalizaProducao(props) {
           value={quantidade}
           onChange={(e) => setQuantidade(e.target.value)}
         />
-        <div className='mt-2' style={{padding:"0px"}}>
+        <div className='row m-2' style={{padding:"0px"}}>
           {costureiros.map((val)=>{
             return(
-              <div className="form-check" onChange={(event)=>handleSelect(event.target.value)}>
+              <div className="col-4 col-md-6 form-check" onChange={(event)=>handleSelect(event.target.value)}>
                 <input class="form-check-input" value={val.id} style={{backgroundColor:"black"}} type="radio" name="flexRadioDefault" id="flexRadioDefault"/>
                 <label value={val.id}  class="form-check-label" for="flexRadioDefault1">
                   {val.nome}

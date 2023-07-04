@@ -17,6 +17,14 @@ class ProdutoService extends ApiService {
     }
     
   }
+  getListaProdutosNegativo(alteraAlerta) {
+    try{
+      return this.get('/getListaProdutosNegativo',alteraAlerta)
+    }catch(e){
+      console.log(e)
+    }
+    
+  }
 
   getListaProdutosProduzidos(alteraAlerta) {
     try{

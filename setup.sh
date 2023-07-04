@@ -10,7 +10,7 @@ else
   echo "Valor de LOCALHOST não encontrado no arquivo config.txt"
 fi
 
-echo "PULL NODE E MYSQL"
+echo "PULL MYSQL"
 docker pull mysql
 
 echo "BUILDING GERA ESTOQUE E FRONT"

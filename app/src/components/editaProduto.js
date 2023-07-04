@@ -26,7 +26,7 @@ function EditProduto(props) {
     setReferencia(referencia)
     setDescricao(descricao)
     setEstoque(estoque)
-  }, [referencia, descricao, estoque, id, clearProduto])
+  }, [referencia, descricao, estoque, id])
 
 
   return (
@@ -45,7 +45,7 @@ function EditProduto(props) {
           </div>
           <div className='row m-2'>
             <label style={{fontSize:'20px', padding:'0', color:"#563554"}} htmlFor="descricao">Descrição:</label>
-            <input
+            <textarea
               style={{fontSize:'20px', padding:'0'}}
               type="text"
               id="descricao"

@@ -1,6 +1,5 @@
 import axios from 'axios'
 import env from "react-dotenv"
-import Alert from '../components/alert'
 
 const LOCALHOST = env.LOCALHOST
 

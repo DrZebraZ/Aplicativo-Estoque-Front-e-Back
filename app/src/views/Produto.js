@@ -5,6 +5,7 @@ import './produto.css'
 import AddProduto from '../components/addProduto'
 import EditProduto from '../components/editaProduto'
 import DelProduto from '../components/delProduto'
+import Estoque from '../components/estoque'
 
 function Produto() {
   const [referencia, setReferencia] = useState('Select')
@@ -35,6 +36,7 @@ function Produto() {
     setEstoque('0')
     setId('')
     setLoading(true)
+    setLayoutCRUD(<></>)
   }
 
   function changeDados(val){
@@ -50,7 +52,7 @@ function Produto() {
   }
 
   function alert(tipo){
-    const delay = 8000
+    const delay = 15000
     const handleAction =() =>{
       alteraAlerta('')
     }
@@ -100,6 +102,15 @@ function Produto() {
         clearProduto={clearProduto}
         alteraAlerta={alteraAlerta}
       />)
+    }else if(paginaCRUD === 'ESTOQUE'){
+      setLayoutCRUD(<Estoque
+        id={id}
+        referencia={referencia}
+        estoque={estoque}
+        descricao={descricao}
+        clearProduto={clearProduto}
+        alteraAlerta={alteraAlerta}
+      />)
     }
   },[paginaCRUD, referencia, isLoading])
 
@@ -130,6 +141,7 @@ function Produto() {
                 <div className={`col ${paginaCRUD === 'ADICIONAR' ? 'active' : ''}`} style={{textAlign:'center'}} onClick={()=>setPaginaCRUD('ADICIONAR')}>ADICIONAR</div>
                 <div className={`col ${paginaCRUD === 'EDITAR' ? 'active' : ''}`} style={{textAlign:'center'}} onClick={()=>setPaginaCRUD('EDITAR')}>EDITAR</div>
                 <div className={`col ${paginaCRUD === 'DELETAR' ? 'active' : ''}`} style={{textAlign:'center'}} onClick={()=>setPaginaCRUD('DELETAR')}>DELETAR</div>
+                <div className={`col ${paginaCRUD === 'ESTOQUE' ? 'active' : ''}`} style={{textAlign:'center'}} onClick={()=>setPaginaCRUD('ESTOQUE')}>ESTOQUE</div>
               </div>
               <div style={{marginTop:"0%", padding:"0%"}}>
                 {layoutCRUD}
@@ -137,10 +149,10 @@ function Produto() {
             </div>
           </div>
           <div className='col m-1'>
-            <div className="row justify-content-between" style={{backgroundColor:"black", padding:"0px 10px"}}>
-              <p className="col-4" style={{padding:"0px", margin:"0px"}}>Referência</p>
+            <div className="row justify-content-between" style={{backgroundColor:"black", paddingLeft:"10px", paddingRight:"30px"}}>
+              <p className="col-3" style={{padding:"0px", margin:"0px"}}>Referência</p>
               <p className="col-7" style={{padding:"0px", margin:"0px"}}>Descrição</p>
-              <p className="col-1" style={{padding:"0px", margin:"0px"}}>Estoque</p>
+              <p className="col-2" style={{padding:"0px", margin:"0px"}}>Estoque</p>
             </div>
             <div id="table-wrapper" className='row' style={{fontSize:'16px'}}>
               <div id="table-scroll" style={{border:"2px solid black"}}>
@@ -148,9 +160,9 @@ function Produto() {
                   {dados.map((val)=>{
                     return(
                       <li key={val.id} bgcolor="#EEEEEE" className='row justify-content-between' onClick={()=>changeDados(val)}>
-                        <p className='col-4' style={{margin:'0px', padding:'1px 0px'}}>{val.referencia}</p>
+                        <p className='col-3' style={{margin:'0px', padding:'1px 0px'}}>{val.referencia}</p>
                         <p className='col-7' style={{margin:'0px', padding:'1px 0px'}}>{val.descricao}</p>
-                        <p className='col-1' style={{margin:'0px', padding:'1px 0px'}}>{val.estoque}</p>
+                        <p className='col-2' style={{margin:'0px', padding:'1px 0px'}}>{val.estoque}</p>
                       </li>
                     )
                   })}

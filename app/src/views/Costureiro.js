@@ -40,7 +40,7 @@ function Costureiro() {
   }
 
   function alert(tipo, message){
-    const delay = 8000
+    const delay = 15000
     const handleAction =() =>{
       alteraAlerta('')
     }

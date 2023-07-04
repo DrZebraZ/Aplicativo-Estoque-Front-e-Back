@@ -4,7 +4,7 @@ function DelProduto(props) {
   const {referencia, descricao, estoque, id, clearProduto, alteraAlerta} = props
   const [addRef, setReferencia] = useState('')
   const [addDesc, setDescricao] = useState('')
-  const [addEstq, setEstoque] = useState(0)
+  const [addEstq, setEstoque] = useState('')
   const [delID, setId] = useState('')
 
   async function delProduto(){
@@ -36,25 +36,28 @@ function DelProduto(props) {
               style={{fontSize:'20px', padding:'0', color:"#989889"}}
               type="text"
               id="referencia"
-              value={addRef}
+              defaultValue={addRef}
+              disabled
             />
           </div>
           <div className='row m-2'>
             <label style={{fontSize:'20px', padding:'0' , color:"#563554"}} htmlFor="descricao">Descrição:</label>
-            <input
+            <textarea
               style={{fontSize:'20px', padding:'0', color:"#989889"}}
               type="text"
               id="descricao"
-              value={addDesc}
+              defaultValue={addDesc}
+              disabled
             />
           </div>
           <div className='row m-2'>
             <label style={{fontSize:'20px', padding:'0' , color:"#563554"}} htmlFor="estoque">Estoque:</label>
             <input
               style={{fontSize:'20px', padding:'0', color:"#989889"}}
-              type="number"
+              type="text"
               id="estoque"
-              value={addEstq}
+              defaultValue={addEstq}
+              disabled
             />
           </div>
           <div className='row m-2'>

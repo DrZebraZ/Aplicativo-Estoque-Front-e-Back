@@ -44,7 +44,7 @@ function AddProduto(props) {
           </div>
           <div className='row m-2'>
             <label style={{fontSize:'20px', padding:'0', color:"#563554"}} htmlFor="descricao">Descrição:</label>
-            <input
+            <textarea
               style={{fontSize:'20px', padding:'0'}}
               type="text"
               id="descricao"

@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react'
-import serviceProduto from '../app/service/ProdutoService'
 import producaoService from '../app/service/ProducaoService'
 import costureiroService from '../app/service/CostureiroService'
 function FinalizaProducao(props) {

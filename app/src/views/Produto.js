@@ -21,7 +21,11 @@ function Produto() {
   async function buscaTabela(setDados){
     try{
       const response = await serviceProduto.getListaProdutos(alteraAlerta)
-      setDados(response.data)
+      if (response.data.lenght == null){
+        setDados({referencia: "NA", descricao:"NA", estoque: 0})
+      }else{
+        setDados(response.data)
+      }
     }catch(e){
       console.log(e)
     }

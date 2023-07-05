@@ -25,7 +25,21 @@ class DatabaseConnector {
 		}
 		
 	}
-	
+
+	handleDisconnect() {
+		this.pool.on('error', (err) => {
+			if (err.code === 'PROTOCOL_CONNECTION_LOST') {
+				console.log('Conexão com o banco de dados foi perdida. Tentando reconectar...');
+				this.configurePool();
+			} else if (err.code === 'ETIMEDOUT') {
+				console.log('Timeout de conexão. Tentando reconectar...');
+				this.configurePool();
+			} else {
+				console.log(err);
+			}
+		});
+	}
+
 	async getConnection():Promise<mysql.PoolConnection>{
 		if (!this.pool){
 			console.log("NO POOL")
@@ -35,6 +49,7 @@ class DatabaseConnector {
 			console.log("NO CONN")
 			let connection = await this.pool.getConnection();
 			this.connection = connection
+			this.handleDisconnect()
 		}
 		return this.connection;
 	};

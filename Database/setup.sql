@@ -12,7 +12,6 @@ CREATE TABLE IF NOT EXISTS produto (
   UNIQUE KEY produto_UN (referencia)
 );
 
-
 CREATE TABLE IF NOT EXISTS costureiros (
   id int NOT NULL AUTO_INCREMENT,
   nome varchar(100) DEFAULT NULL,
@@ -47,5 +46,7 @@ CREATE TABLE IF NOT EXISTS produzido (
   CONSTRAINT produzido_FK FOREIGN KEY (id_producao) REFERENCES producao (id),
   CONSTRAINT produzido_FK_1 FOREIGN KEY (id_costureiro) REFERENCES costureiros (id)
 ) ;
+
+
 
 GRANT ALL PRIVILEGES ON * TO 'drzebra'@'%';

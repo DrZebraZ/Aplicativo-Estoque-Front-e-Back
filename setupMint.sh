@@ -1,4 +1,4 @@
-bash getIP.sh
+bash getIpMint.sh
 
 echo "PULL MYSQL"
 sudo docker pull mysql

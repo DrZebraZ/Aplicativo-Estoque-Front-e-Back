@@ -17,11 +17,13 @@ services:
   gera-estoque:
     image: dz-gera-estoque
     container_name: gera-estoque
+    restart: always
     ports:
       - "3001:3001"
 
   front-end:
     image: dz-front-end
     container_name: front
+    restart: always
     ports:
       - "3000:3000"

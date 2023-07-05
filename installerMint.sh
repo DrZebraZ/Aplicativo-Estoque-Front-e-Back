@@ -27,10 +27,12 @@ sudo usermod -aG docker $USER
 echo "newgrp docker"
 newgrp docker
 
-echo "cp ./app/.env.copy ./app/.env
-cp api/src/.env.copy api/src/.env"
+echo "COPIA ENV"
+
 cp ./app/.env.copy ./app/.env
-cp api/src/.env.copy api/src/.env
+
+echo "COPIA ENV"
+cp ./api/src/.env.copy ./api/src/.env
 
 echo "sudo apt-get install net-tools"
 sudo apt-get install net-tools

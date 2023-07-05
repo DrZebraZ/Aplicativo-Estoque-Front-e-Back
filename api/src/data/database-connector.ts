@@ -28,6 +28,7 @@ class DatabaseConnector {
 
 	handleDisconnect() {
 		this.pool.on('error', (err) => {
+			console.log(err)
 			if (err.code === 'PROTOCOL_CONNECTION_LOST') {
 				console.log('Conexão com o banco de dados foi perdida. Tentando reconectar...');
 				this.configurePool();

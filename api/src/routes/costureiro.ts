@@ -20,12 +20,15 @@ async function addCostureiro(request:FastifyRequest<{Body:AddCostureiroSchema}>,
     reply.code(201)
     reply.send('Adicionado!')
   }catch(e){
+    if (e.code == 'ER_DUP_ENTRY'){
+      reply.send(`Nome ja em uso`)
+    }else{
+      reply.send(`Erro inesperado: ${e}`)
+    }
     databaseConnector.closeConn()
     console.log(e)
-    reply.code(404)
-    reply.send(`Erro inesperado: ${e}`)
+    reply.code(404) 
   }
-
 }
 
 async function delCostureiro(request:FastifyRequest, reply:FastifyReply){

@@ -24,10 +24,14 @@ async function addProduto(request:FastifyRequest<{Body: AddProdutoSchema}>, repl
     reply.code(201)
     reply.send("Criado com sucesso!")
   }catch(e){
+    if (e.code == 'ER_DUP_ENTRY'){
+      reply.send(`Referencia já utilizada`)
+    }else{
+      reply.send(`Erro inesperado: ${e}`)
+    }
     databaseConnector.closeConn()
     console.log(e)
     reply.code(404)
-    reply.send(`Erro inesperado: ${e}`)
   }
 }
 
@@ -83,10 +87,14 @@ async function editaProduto(request:FastifyRequest<{Body: EditaProdutoSchema}>, 
     reply.code(201)
     reply.send('Alterado!')
   }catch(e){
+    if (e.code === 'ER_DUP_ENTRY'){
+      reply.send(`Referencia já em uso`)
+    }else{
+      reply.send(`Erro inesperado: ${e}`)
+    }
     databaseConnector.closeConn()
     console.log(e)
     reply.code(404)
-    reply.send(`Erro inesperado: ${e}`)
   }
 }
 

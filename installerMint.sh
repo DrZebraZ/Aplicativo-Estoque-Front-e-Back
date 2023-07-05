@@ -27,6 +27,8 @@ sudo usermod -aG docker $USER
 echo "newgrp docker"
 newgrp docker
 
+echo "cp ./app/.env.copy ./app/.env
+cp api/src/.env.copy api/src/.env"
 cp ./app/.env.copy ./app/.env
 cp api/src/.env.copy api/src/.env
 

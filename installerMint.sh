@@ -27,6 +27,8 @@ sudo usermod -aG docker $USER
 echo "newgrp docker"
 newgrp docker
 
+sudo usermod -aG docker $USER
+
 echo "bash copyEnvs.sh"
 bash copyEnvs.sh
 
